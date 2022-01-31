@@ -1,20 +1,54 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import {createNativeStackNavigator } from '@react-navigation/native-stack'
+import Homepage from './screens/Homepage';
+import Admin from './screens/Admin';
+import User from './screens/User';
+
+const defaultNavOptions = {
+  headerStyle: {backgroundColor: '#f4511e'},
+  headerTintColor: '#fff',
+  headerTitleStyle: {fontWeight: 'bold'}
+}
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <NavigationContainer>
       <StatusBar style="auto" />
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Homepage}  options={{
+          headerStyle: {backgroundColor: '#f4511e'},
+          headerTintColor: '#fff',
+          headerTitleStyle: {fontWeight: 'bold'},
+          headerRight: () => (
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="Info"
+              color="black"
+            />
+          ),
+        }}/>
+        <Stack.Screen name="Admin" component={Admin} options={defaultNavOptions}/>
+        <Stack.Screen name="User" component={User} options={defaultNavOptions}/>
+      </Stack.Navigator>
+      
+    </NavigationContainer>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  button : {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-});
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'black',
+  }
+})

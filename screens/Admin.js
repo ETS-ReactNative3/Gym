@@ -14,7 +14,7 @@ const Admin = () => {
                         <Text style={{padding:10,fontSize:15,color:'white'}}>Email : <TextInput /> </Text>
                         <Text style={{padding:10,fontSize:15,color:'white'}}>Password : <TextInput /> </Text>
                         <View style={{flexDirection:'row',padding:20,justifyContent:'space-around'}}>
-                            <Button style={{padding:10}}  title="Login" />
+                            <Button style={{padding:10}}  title="Login" /> 
                             <Button style={{padding:10}}  title="SignUp"/>
                         </View>
                         <Button style={{padding:10}}  title="Forgot Password"/>

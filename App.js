@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet } from 'react-native';
+import { Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack'
+import { AntDesign} from '@expo/vector-icons';
+
 import Homepage from './screens/Homepage';
 import Admin from './screens/Admin';
 import User from './screens/User';
@@ -25,12 +27,9 @@ export default function App() {
           headerTintColor: '#fff',
           headerTitleStyle: {fontWeight: 'bold'},
           headerRight: () => (
-            <Button
-              onPress={() => alert('This is a button!')}
-              title="Info"
-              color="black"
-            />
-          ),
+            <TouchableOpacity onPress={() => alert('This is a button!')}><AntDesign name="bars" size={34} color="black" /></TouchableOpacity>
+            // <Button onPress={() => alert('This is a button!')} title='' ></Button>
+            ),
         }}/>
         <Stack.Screen name="Admin" component={Admin} options={defaultNavOptions}/>
         <Stack.Screen name="User" component={User} options={defaultNavOptions}/>

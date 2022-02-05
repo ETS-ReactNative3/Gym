@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer,} from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack'
-import { AntDesign} from '@expo/vector-icons';
+
 
 import Homepage from './screens/Homepage';
-import Admin from './screens/Admin';
-import User from './screens/User';
+import Admin from './screens/Admin/Admin';
+import UserSignup  from './screens/User/UserSignup';
+import UserLogin from './screens/User/UserLogin';
+import UserHome from './screens/User/UserHome';
 
 const defaultNavOptions = {
   headerStyle: {backgroundColor: '#f4511e'},
@@ -22,18 +24,12 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="auto" />
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Homepage}  options={{
-          headerStyle: {backgroundColor: '#f4511e'},
-          headerTintColor: '#fff',
-          headerTitleStyle: {fontWeight: 'bold'},
-          headerRight: () => (
-            <TouchableOpacity onPress={() => alert('This is a button!')}><AntDesign name="bars" size={34} color="black" /></TouchableOpacity>
-            // <Button onPress={() => alert('This is a button!')} title='' ></Button>
-            ),
-        }}/>
+        <Stack.Screen name="Home" component={Homepage}  options={defaultNavOptions}/>
         <Stack.Screen name="Admin" component={Admin} options={defaultNavOptions}/>
-        <Stack.Screen name="User" component={User} options={defaultNavOptions}/>
-      </Stack.Navigator>
+        <Stack.Screen name="UserLogin" component={UserLogin} options={defaultNavOptions}/>
+        <Stack.Screen name="UserSignup" component={UserSignup} options={defaultNavOptions}/>
+        <Stack.Screen name="UserHome" component={UserHome} options={defaultNavOptions}/>
+      </Stack.Navigator> 
       
     </NavigationContainer>
   );

@@ -1,23 +1,28 @@
 import React from 'react'
-import { View, Text ,StyleSheet, Button ,ImageBackground , Dimensions} from 'react-native'
-
+import { View, Text ,StyleSheet ,ImageBackground , Dimensions ,ScrollView,Image} from 'react-native'
+import {Button} from 'react-native-paper'
+import Exercise from '../component/Exercise';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Homepage = ({navigation}) => {
     return (
-        <View>
-            <ImageBackground source={require('../assets/b4.jpg')} style={styles.img}>
-                <View style={styles.container}>
-                                
-                <View style={styles.main}>
-                    <Button title='Admin' onPress={() => navigation.navigate('Admin')} />
-                    <Button title='User' onPress={() => navigation.navigate('User')} />
+        <ScrollView>
+                <View>
+                    <ImageBackground source={require('../assets/img3.jpg')} style={styles.topImg}>
+                        <Text style={styles.heading}> Welcome to The Gym </Text>
+                        <View style={styles.line}/>
+                        <Text style={styles.heading}>Login</Text>
+                        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => navigation.navigate('Admin')}>Admin</Button>                
+                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => navigation.navigate('UserLogin')}>User</Button>    
+                        </View>
+                    </ImageBackground>
                 </View>
-                
+                <View style={{padding:10}}>
+                    <Exercise />         
                 </View>
-            </ImageBackground>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -28,10 +33,30 @@ const styles = StyleSheet.create({
         height:windowHeight,
         width:windowWidth
     },
-    container :{paddingTop : 30},
-    main: {
-        flexDirection : 'row',
-        justifyContent : 'space-around',
-        paddingTop : 20
+    topImg:{
+        padding: 10,
+        width:windowWidth,
+        height: 190    
+    },
+    textInput : {
+        marginLeft : 18,
+        marginRight : 18,
+        marginTop : 18
+    },
+    heading : {
+        color:'white',
+        fontSize:25,
+        textAlign:'center',
+        fontStyle:'italic',
+        fontWeight:'bold',
+        padding: 5,
+    },
+    line:{
+        borderBottomColor:'red',
+        borderBottomWidth:4,
+        borderRadius:10,
+        marginLeft:60,
+        marginRight:60,
+        marginTop:4
     }
 })

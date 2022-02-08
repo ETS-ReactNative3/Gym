@@ -1,35 +1,36 @@
 import React, { useState } from 'react'
 import { View, Text , ImageBackground,Dimensions,StyleSheet } from 'react-native'
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextInput , Button} from 'react-native-paper'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const UserSignup = () => {
+const UserSignup = ({navigation}) => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
-    const sendCred = () => {
+    const signUp = () => {
         fetch("http://10.0.2.2:7777/signup",{
             method:"POST",
             headers:  {
                 "Content-Type" : "application/json"
             },
             body : JSON.stringify({
-                "Name" : name,
+                "name" : name,
                 "email" : email,
                 "password" : password
             })
         }).then(res => res.json()).then(data => {
-            try {
-                AsyncStorage.setItem('token',data.token)
-            }catch(error) {
-                console.log(error)
+            console.log(data)
+            if(!data.token){
+                return
             }
+            AsyncStorage.setItem('token',data.token)
+            navigation.navigate('UserLogin')
         }).catch(err => {
-            console.log(error)
+            console.log(err)
         })
     }
 
@@ -51,7 +52,7 @@ const UserSignup = () => {
                         <TextInput label="Name" mode="outlined" style={styles.textInput} value={name} onChangeText={(text) => {setName(text)}}/>
                         <TextInput label="Email" mode="outlined" style={styles.textInput} value={email} onChangeText={(text) => {setEmail(text)}}/>
                         <TextInput label="Password" mode="outlined" secureTextEntry={true} style={styles.textInput} value={password} onChangeText={(text) => {setPassword(text)}}/>
-                        <Button mode="contained" style={styles.textInput} color="orange" onPress={() => sendCred()}> Create Account </Button>
+                        <Button mode="contained" style={styles.textInput} color="orange" onPress={() => signUp()}> Create Account </Button>
 
                     </View> 
                 </View>

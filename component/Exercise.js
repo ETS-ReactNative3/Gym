@@ -26,7 +26,7 @@ const Exercise = () => {
                     <Paragraph style={{padding:4}}>
                         The bench press, or chest press, is an upper-body weight training exercise in which the trainee presses a weight upwards while lying on a weight training bench. The exercise uses the pectoralis major, the anterior deltoids, and the triceps, among other stabilizing muscles.
                     </Paragraph>
-                    <YoutubePlayer height={300} videoId={"rT7DgCr-3pg"}    />
+                    {/* <YoutubePlayer height={300} videoId={"rT7DgCr-3pg"}    /> */}
                 </Card.Content>
         </Card>
     )

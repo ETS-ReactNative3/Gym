@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, Text } from 'react-native'
-import Exercise from '../../component/Exercise'
+import Exercise from '../component/Exercise'
 
 const UserHome = () => {
 

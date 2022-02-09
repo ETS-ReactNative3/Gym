@@ -3,7 +3,7 @@ requireToken.js
 auth.js
 weekDay.json
 ExercisesList.json
-
+AdminSignup.js
 node_modules/
 .expo/
 dist/

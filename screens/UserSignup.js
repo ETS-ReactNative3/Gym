@@ -23,7 +23,7 @@ const UserSignup = ({navigation}) => {
                 "password" : password
             })
         }).then(res => res.json()).then(data => {
-            console.log(data)
+            console.log("data",data)
             if(!data.token){
                 return
             }
@@ -36,7 +36,7 @@ const UserSignup = ({navigation}) => {
 
     return (
         <View>
-            <ImageBackground source={require('../../assets/b2.jpg') } style={styles.img}>
+            <ImageBackground source={require('../assets/b2.jpg') } style={styles.img}>
                 <View  style={{paddingTop : 35}}>
                     <Text style={{color:'white',textAlign:'center',padding:10,fontSize:20}}>Welcome</Text>
                     <Text style={{color:'white',textAlign:'center',padding:10,fontSize:20}}>Create an Account</Text>

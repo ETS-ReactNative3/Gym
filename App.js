@@ -5,10 +5,11 @@ import {createNativeStackNavigator } from '@react-navigation/native-stack'
 
 
 import Homepage from './screens/Homepage';
-import Admin from './screens/Admin/Admin';
-import UserSignup  from './screens/User/UserSignup';
-import UserLogin from './screens/User/UserLogin';
-import UserHome from './screens/User/UserHome';
+import AdminLogin from './screens/AdminLogin';
+import UserSignup  from './screens/UserSignup';
+import UserLogin from './screens/UserLogin';
+import UserHome from './screens/UserHome';
+import AdminSignup from './screens/AdminSignup';
 
 const defaultNavOptions = {
   headerStyle: {backgroundColor: '#f4511e'},
@@ -25,7 +26,8 @@ export default function App() {
       <StatusBar style="auto" />
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Homepage}  options={defaultNavOptions}/>
-        <Stack.Screen name="Admin" component={Admin} options={defaultNavOptions}/>
+        <Stack.Screen name="Admin" component={AdminLogin} options={defaultNavOptions}/>
+        <Stack.Screen name="AdminSignup" component={AdminSignup} options={defaultNavOptions}/>
         <Stack.Screen name="UserLogin" component={UserLogin} options={defaultNavOptions}/>
         <Stack.Screen name="UserSignup" component={UserSignup} options={defaultNavOptions}/>
         <Stack.Screen name="UserHome" component={UserHome} options={defaultNavOptions}/>

@@ -27,7 +27,7 @@ const UserSignup = ({navigation}) => {
             if(!data.token){
                 return
             }
-            AsyncStorage.setItem('token',data.token)
+            AsyncStorage.setItem('USER_SIGNUP_TOKEN',data.token)
             navigation.navigate('UserLogin')
         }).catch(err => {
             console.log(err)

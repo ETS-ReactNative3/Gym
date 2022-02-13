@@ -32,7 +32,7 @@ const UserLogin = ({navigation}) => {
                   );
                 return
             }
-            AsyncStorage.setItem('token',data.token)
+            AsyncStorage.setItem('USER_LOGIN_TOKEN',data.token)
             navigation.replace('UserHome')
             
         }).catch(error => {

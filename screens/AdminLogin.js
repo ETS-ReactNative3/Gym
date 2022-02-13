@@ -35,9 +35,8 @@ const Admin = ({navigation}) => {
             }
             setEmail('')
             setPassword('')
-            AsyncStorage.setItem('token',data.token)
-            navigation.replace('UserHome')
-            
+            AsyncStorage.setItem('ADMIN_LOGIN_TOKEN',data.token)
+            navigation.replace('AdminHome')
         }).catch(error => {
             console.log(error)
         })

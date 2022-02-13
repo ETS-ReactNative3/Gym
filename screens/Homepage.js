@@ -2,10 +2,40 @@ import React from 'react'
 import { View, Text ,StyleSheet ,ImageBackground , Dimensions ,ScrollView,Image} from 'react-native'
 import {Button} from 'react-native-paper'
 import Exercise from '../component/Exercise';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Homepage = ({navigation}) => {
+    const adminLogin = async () => {
+        const adminToken =  AsyncStorage.getItem('ADMIN_LOGIN_TOKEN')
+        // navigation.navigate('Admin')
+        let keys = []
+        try {
+            keys = await AsyncStorage.getAllKeys()
+        } catch(e) {
+            // read key error
+        }
+
+        console.log(keys)
+        if(adminToken == null ){
+            navigation.navigate('Admin')
+        }else{
+            navigation.navigate('AdminHome')
+        }
+    }
+
+    const userLogin = () => {
+        const userToken = AsyncStorage.getItem('USER_LOGIN_TOKEN')
+        if(userToken !== null) {
+            navigation.navigate('UserHome')
+        }
+        else {
+            navigation.navigate('UserLogin')
+        }
+    }
     return (
         <ScrollView>
                 <View>
@@ -14,8 +44,8 @@ const Homepage = ({navigation}) => {
                         <View style={styles.line}/>
                         <Text style={styles.heading}>Login</Text>
                         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => navigation.navigate('Admin')}>Admin</Button>                
-                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => navigation.navigate('UserLogin')}>User</Button>    
+                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() =>adminLogin()}>Admin</Button>                
+                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => userLogin()}>User</Button>    
                         </View>
                     </ImageBackground>
                 </View>

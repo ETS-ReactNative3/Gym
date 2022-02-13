@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken')
 const {jwtkey} = require('../keys')
 
 const Admin = require('../models/Admin')
+const Week = require('../models/Week')
+const User = require('../models/User')
 
 exports.postSignup = (req,res,next) => {
     const name = req.body.name;
@@ -66,3 +68,4 @@ exports.postLogin = (req,res,next) => {
         console.log(err)
     })
 }
+

@@ -8,9 +8,11 @@ require('./models/User')
 const adminRoutes = require('./routes/admin')
 const userRoutes = require('./routes/user')
 const requireToken = require('./middleware/requireToken')
+const { db } = require('./models/User')
 
 const PORT = 7777
 app.use(bodyparser.json())
+
 
 app.use(userRoutes)
 app.use(adminRoutes)
@@ -20,6 +22,8 @@ mongoose.connect(MONGO_URL).then(res => {
 }).catch(error => {
     console.log(error)
 })
+
+
 
 app.listen(PORT,() => {
     console.log('Server running')

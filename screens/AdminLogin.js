@@ -19,7 +19,7 @@ const Admin = ({navigation}) => {
          body:JSON.stringify({
            "email":email,
            "password":password
-         })
+        })
         })
         .then(res => res.json())
         .then(data =>{

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text ,StyleSheet ,ImageBackground , Dimensions ,ScrollView,Image} from 'react-native'
 import {Button} from 'react-native-paper'
-import Exercise from '../component/Exercise';
+import Api from '../component/Api';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -49,9 +49,7 @@ const Homepage = ({navigation}) => {
                         </View>
                     </ImageBackground>
                 </View>
-                <View style={{padding:10}}>
-                    <Exercise />         
-                </View>
+                <Api />
         </ScrollView>
     )
 }

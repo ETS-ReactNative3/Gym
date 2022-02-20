@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
-import { NavigationContainer,} from '@react-navigation/native';
+import { NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack'
+
 
 import Homepage from './screens/Homepage';
 import AdminLogin from './screens/AdminLogin';
 import UserSignup  from './screens/UserSignup';
 import UserLogin from './screens/UserLogin';
 import UserHome from './screens/UserHome';
-// import AdminSignup from './screens/AdminSignup';
+
 import AdminHome from './screens/AdminHome';
 import AddData from './component/AddData';
 
@@ -22,12 +23,13 @@ const defaultNavOptions = {
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+ 
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Homepage}  options={defaultNavOptions}/>
-        <Stack.Screen name="Admin" component={AdminLogin} options={defaultNavOptions}/>
+        <Stack.Screen name="AdminLogin" component={AdminLogin} options={defaultNavOptions}/>
         <Stack.Screen name="AdminHome" component={AdminHome} options={defaultNavOptions}/>
         <Stack.Screen name="UserLogin" component={UserLogin} options={defaultNavOptions}/>
         <Stack.Screen name="UserSignup" component={UserSignup} options={defaultNavOptions}/>

@@ -8,18 +8,15 @@ const Exercise = ({data}) => {
                 {
                     data.map((data,idx) => 
                     <View style={{padding:20}}>
-                        <Card>
+                        <Card key={idx}>
                             <Card.Title title={data.name}  />
                             <Card.Content>
                                 <Paragraph>{data.desc}</Paragraph>
                             </Card.Content>
                             <Card.Cover source={{ uri: data.imageUrl }} />
-                        </Card>
-                        
+                        </Card>    
                     </View>
-                    
                     )
-
                 }
         </ScrollView>
     )

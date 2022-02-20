@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { View, Text ,StyleSheet ,ImageBackground , Dimensions ,ScrollView,Image} from 'react-native'
 import {Button} from 'react-native-paper'
 import Api from '../component/Api';
@@ -9,33 +9,56 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Homepage = ({navigation}) => {
+    const [adminToken,setAdminToken] = useState(false)
+    const [userloginToken,setUserLoginToken] = useState(false)
+
     const adminLogin = async () => {
-        const adminToken =  AsyncStorage.getItem('ADMIN_LOGIN_TOKEN')
-        // navigation.navigate('Admin')
         let keys = []
         try {
             keys = await AsyncStorage.getAllKeys()
+            // console.log(keys)
         } catch(e) {
             // read key error
         }
 
-        console.log(keys)
-        if(adminToken == null ){
-            navigation.navigate('Admin')
-        }else{
+        keys.forEach(el => {
+            if(el == 'ADMIN_LOGIN_TOKEN'){
+                setAdminToken(true)
+            }
+        })
+
+        if(adminToken == false){
+            navigation.navigate('AdminLogin')
+        }
+        if(adminToken == true){
             navigation.navigate('AdminHome')
         }
     }
 
-    const userLogin = () => {
-        const userToken = AsyncStorage.getItem('USER_LOGIN_TOKEN')
-        if(userToken !== null) {
-            navigation.navigate('UserHome')
+    const userLogin = async () => {
+        let keys = []
+        try {
+            keys = await AsyncStorage.getAllKeys()
+            // console.log(keys)
+        } catch(e) {
+            // read key error
         }
-        else {
+
+        keys.forEach(el => {
+            if(el == 'USER_LOGIN_TOKEN'){
+                setUserLoginToken(true)
+            }
+        })
+
+        if(userloginToken == false){
             navigation.navigate('UserLogin')
         }
+        if(userloginToken == true){
+            navigation.navigate('UserHome')
+        }
     }
+
+
     return (
         <ScrollView>
                 <View>

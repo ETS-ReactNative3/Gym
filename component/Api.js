@@ -14,7 +14,7 @@ const Api = () => {
             return
         }
 
-        fetch("http://10.0.2.2:7777/user",{
+        fetch("https://nsgymbackend.herokuapp.com/user",{
             method : "POST",
             headers: {
                 "Content-Type" : "application/json"
@@ -43,15 +43,16 @@ const Api = () => {
                 }}>
                     <Picker.Item label="Select" value={null} />
                     <Picker.Item label="Chest" value="Chest" />
-                    <Picker.Item label="Back" value="Back" />
-                    <Picker.Item label="Shoulder" value="Shoulder" />
-                    <Picker.Item label="Biceps" value="Biceps" />
-                    <Picker.Item label="Triceps" value="Triceps" />
+                    <Picker.Item label="Back" value="back" />
+                    <Picker.Item label="Shoulder" value="shoulder" />
+                    <Picker.Item label="Biceps" value="biceps" />
+                    <Picker.Item label="Triceps" value="triceps" />
+                    <Picker.Item label="Legs" value="legs"/>
                     </Picker>
                     <Button mode="contained" color='orange' style={{margin:20,borderRadius:7}}  onPress={() => fetchData()}> Get</Button>
             </View>
 
-            <Exercise data={eData}/>
+            <Exercise data={eData} />
         </ScrollView>
     )
 }

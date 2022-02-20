@@ -14,7 +14,7 @@ const AdminSignup = ({navigation}) => {
     const [isAdmin,setIsAdmin] = useState(false)
 
     const signUp = () => {
-        fetch("http://10.0.2.2:7777/admin/signup",{
+        fetch("https://nsgymbackend.herokuapp.com/admin/signup",{
             method:"POST",
             headers: {
                 "Content-Type" : "application/json"

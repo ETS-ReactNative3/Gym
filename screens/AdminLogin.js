@@ -11,7 +11,7 @@ const Admin = ({navigation}) => {
     const [password, setPassword] = useState('')
 
     const login = () => {
-        fetch("http://10.0.2.2:7777/admin/signin",{
+        fetch("https://nsgymbackend.herokuapp.com/admin/signin",{
           method:"POST",
           headers: {
             "Content-Type" : "application/json"
@@ -51,7 +51,7 @@ const Admin = ({navigation}) => {
                     <View style={styles.line}/>
                     <View >
                         <TextInput label="Email" mode="outlined" style={styles.textInput} value={email} onChangeText={(text) => {setEmail(text)}}/>
-                        <TextInput label="Password" mode="outlined" style={styles.textInput}  value={password} onChangeText={(text) => {setPassword(text)}} />
+                        <TextInput label="Password" mode="outlined" secureTextEntry={true} style={styles.textInput}  value={password} onChangeText={(text) => {setPassword(text)}} />
                         <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => login() }>Login</Button>                
                     </View> 
                 </View>

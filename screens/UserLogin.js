@@ -11,7 +11,7 @@ const UserLogin = ({navigation}) => {
     const [password, setPassword] = useState('')
     
     const login = () => {
-        fetch("http://10.0.2.2:7777/signin",{
+        fetch("https://nsgymbackend.herokuapp.com/signin",{
           method:"POST",
           headers: {
             "Content-Type" : "application/json"

@@ -12,7 +12,7 @@ const UserSignup = ({navigation}) => {
     const [password,setPassword] = useState('')
 
     const signUp = () => {
-        fetch("http://10.0.2.2:7777/signup",{
+        fetch("https://nsgymbackend.herokuapp.com/signup",{
             method:"POST",
             headers:  {
                 "Content-Type" : "application/json"

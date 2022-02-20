@@ -1,12 +1,12 @@
 import React ,{useState}from 'react'
-import {Text,ImageBackground,StyleSheet, Dimensions, View, ScrollView,KeyboardAvoidingView} from 'react-native'
+import {Text,ImageBackground,StyleSheet, Dimensions, View, ScrollView,KeyboardAvoidingView,Alert} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import { AntDesign } from '@expo/vector-icons'; 
 import {Button, Card ,TextInput} from 'react-native-paper'
 
 
 const AddData = ({navigation}) => {
-    const [targetMuscleGroup, setTargetMuscleGroup] = useState();
+    const [selectedValue, setSelectedValue] = useState();
     const [name, setName] = useState('')
     const [set, setSet] = useState('')
     const [imageUrl, setImageUrl] = useState('')
@@ -14,13 +14,19 @@ const AddData = ({navigation}) => {
     const [desc,setDesc] = useState('')
 
     const submitData = () => {
-        fetch("http://10.0.2.2:7777/admin/submitData",{
+        if(selectedValue == null){
+            Alert.alert("Select Target Muscle Group To Fetch data")
+            return
+        }
+
+        
+        fetch("https://nsgymbackend.herokuapp.com/admin/submitData",{
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
             },
             body:JSON.stringify({
-                "targetMuscleGroup" : targetMuscleGroup,
+                "targetMuscleGroup" : selectedValue,
                 "name" : name,
                 "imageUrl" : imageUrl,
                 "videoId" : videoId,
@@ -32,6 +38,8 @@ const AddData = ({navigation}) => {
         }).catch(err => {
             console.log(err)
         })
+        
+        navigation.navigate('AddData')
     }
 
     return (
@@ -45,10 +53,12 @@ const AddData = ({navigation}) => {
                                 <View style={{flexDirection:'row',justifyContent:'space-around'}}>
                                     <Text>Choose Target Muscle Group</Text>
                                     <Picker
-                                        selectedValue={value}
+                                        selectedValue={selectedValue}
+                                        style={{ height: 50, width: 150 }}
                                         onValueChange={(itemValue, itemIndex) =>
-                                        setTargetMuscleGroup(itemValue)  
+                                            setSelectedValue(itemValue)  
                                     }>
+                                        <Picker.Item label="Select" value={null}/>
                                         <Picker.Item label="Chest" value="chest" />
                                         <Picker.Item label="Back" value="back" />
                                         <Picker.Item label="Shoulder" value="shoulder" />

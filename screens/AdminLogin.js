@@ -40,7 +40,8 @@ const Admin = ({navigation}) => {
         }).catch(error => {
             console.log(error)
         })
-     }
+    }
+    
     return (
         <View>
             <ImageBackground source={require('../assets/b2.jpg') } style={styles.img}>

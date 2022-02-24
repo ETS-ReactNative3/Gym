@@ -1,12 +1,8 @@
 import React,{useState} from 'react'
-import { View, Text ,StyleSheet ,ImageBackground , Dimensions ,ScrollView,Image} from 'react-native'
+import { View,StyleSheet ,ImageBackground,ScrollView} from 'react-native'
 import {Button} from 'react-native-paper'
 import Api from '../component/Api';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const Homepage = ({navigation}) => {
     const [adminToken,setAdminToken] = useState(false)
@@ -16,9 +12,7 @@ const Homepage = ({navigation}) => {
         let keys = []
         try {
             keys = await AsyncStorage.getAllKeys()
-            // console.log(keys)
         } catch(e) {
-            // read key error
         }
 
         keys.forEach(el => {
@@ -39,10 +33,7 @@ const Homepage = ({navigation}) => {
         let keys = []
         try {
             keys = await AsyncStorage.getAllKeys()
-            // console.log(keys)
-        } catch(e) {
-            // read key error
-        }
+        } catch(e) {}
 
         keys.forEach(el => {
             if(el == 'USER_LOGIN_TOKEN'){
@@ -58,21 +49,18 @@ const Homepage = ({navigation}) => {
         }
     }
 
-
     return (
         <ScrollView>
-                <View>
-                    <ImageBackground source={require('../assets/img3.jpg')} style={styles.topImg}>
-                        <Text style={styles.heading}> Welcome to The Gym </Text>
-                        <View style={styles.line}/>
-                        <Text style={styles.heading}>Login</Text>
-                        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() =>adminLogin()}>Admin</Button>                
-                            <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => userLogin()}>User</Button>    
-                        </View>
-                    </ImageBackground>
+            <View>
+            <ImageBackground source={require('../assets/b3.jpg')} style={styles.img}>
+                <View style={{flexDirection:'row',justifyContent:'center'}}>
+                    <Button style={styles.textInput} mode="contained" color="yellow" onPress={() =>adminLogin()}>Admin</Button>                
+                    {/* <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => userLogin()}>User</Button>     */}
                 </View>
+                <View style={styles.line}/>
                 <Api />
+            </ImageBackground>
+            </View>
         </ScrollView>
     )
 }
@@ -81,13 +69,10 @@ export default Homepage
 
 const styles = StyleSheet.create({
     img:{
-        height:windowHeight,
-        width:windowWidth
-    },
-    topImg:{
-        padding: 10,
-        width:windowWidth,
-        height: 190    
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'contain',
     },
     textInput : {
         marginLeft : 18,
@@ -108,6 +93,7 @@ const styles = StyleSheet.create({
         borderRadius:10,
         marginLeft:60,
         marginRight:60,
-        marginTop:4
+        marginTop:4,
+        paddingBottom : 20
     }
 })

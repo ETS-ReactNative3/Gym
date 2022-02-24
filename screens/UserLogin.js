@@ -12,24 +12,24 @@ const UserLogin = ({navigation}) => {
     
     const login = () => {
         fetch("https://nsgymbackend.herokuapp.com/signin",{
-          method:"POST",
-          headers: {
-            "Content-Type" : "application/json"
-         },
-         body:JSON.stringify({
-           "email":email,
-           "password":password
-         })
+            method:"POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body:JSON.stringify({
+                "email":email,
+                "password":password
+            })
         })
         .then(res => res.json())
-        .then(data =>{
+        .then(data => {    
             if(!data.token) {
                 Alert.alert(
                     "Invalid Credentials",
                     "Invaild Input Please try again",
                     [{text: "Okay",style: "cancel",},],
                     {cancelable: true,}
-                  );
+                );
                 return
             }
             AsyncStorage.setItem('USER_LOGIN_TOKEN',data.token)
@@ -38,7 +38,7 @@ const UserLogin = ({navigation}) => {
         }).catch(error => {
             console.log(error)
         })
-     }
+    }
 
     return (
         <KeyboardAvoidingView>

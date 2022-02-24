@@ -32,23 +32,23 @@ const Api = () => {
 
     return (
         <ScrollView>
-            <Text style={styles.heading}>Select a Muscle Group to Fetch Data</Text>
-
             <View style={styles.main}>
                 <Picker
                     selectedValue={selectedValue}
-                    style={{ height: 50, width: 150 }}
+                    style={{ height: 50, width: 150 ,color:'white'}}
                     onValueChange={(itemValue, itemIndex) => {
                         setSelectedValue(itemValue)
                 }}>
                     <Picker.Item label="Select" value={null} />
+                    <Picker.Item label="Yoga" value="yoga"/>
+                    <Picker.Item label="Cardio" value="cardio"/>
                     <Picker.Item label="Chest" value="Chest" />
                     <Picker.Item label="Back" value="back" />
                     <Picker.Item label="Shoulder" value="shoulder" />
                     <Picker.Item label="Biceps" value="biceps" />
                     <Picker.Item label="Triceps" value="triceps" />
                     <Picker.Item label="Legs" value="legs"/>
-                    </Picker>
+                </Picker>
                     <Button mode="contained" color='orange' style={{margin:20,borderRadius:7}}  onPress={() => fetchData()}> Get</Button>
             </View>
 
@@ -67,9 +67,11 @@ const styles = StyleSheet.create({
       
     },
     heading :{
+        padding: 10,
         fontSize : 15,
         fontWeight : 'bold',    
-        textAlign : 'center'
+        textAlign : 'center',
+        color:'white'
     },
     data:{
         padding: 5,

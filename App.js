@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack'
-
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import Homepage from './screens/Homepage';
 import AdminLogin from './screens/AdminLogin';
@@ -19,11 +20,10 @@ const defaultNavOptions = {
   headerTitleStyle: {fontWeight: 'bold'}
 }
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
- 
+
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
@@ -41,15 +41,3 @@ export default function App() {
   );
 }
 
-
-const styles = StyleSheet.create({
-  button : {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'black',
-  }
-})

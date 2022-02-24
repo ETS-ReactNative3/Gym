@@ -23,15 +23,12 @@ const UserSignup = ({navigation}) => {
                 "password" : password
             })
         }).then(res => res.json()).then(data => {
-            console.log("data",data)
             if(!data.token){
                 return
             }
             AsyncStorage.setItem('USER_SIGNUP_TOKEN',data.token)
             navigation.navigate('UserLogin')
-        }).catch(err => {
-            console.log(err)
-        })
+        }).catch(err => {})
     }
 
     return (
@@ -53,7 +50,6 @@ const UserSignup = ({navigation}) => {
                         <TextInput label="Email" mode="outlined" style={styles.textInput} value={email} onChangeText={(text) => {setEmail(text)}}/>
                         <TextInput label="Password" mode="outlined" secureTextEntry={true} style={styles.textInput} value={password} onChangeText={(text) => {setPassword(text)}}/>
                         <Button mode="contained" style={styles.textInput} color="orange" onPress={() => signUp()}> Create Account </Button>
-
                     </View> 
                 </View>
             </ImageBackground>

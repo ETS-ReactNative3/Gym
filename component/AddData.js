@@ -1,9 +1,7 @@
 import React ,{useState}from 'react'
 import {Text,ImageBackground,StyleSheet, Dimensions, View, ScrollView,KeyboardAvoidingView,Alert} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
-import { AntDesign } from '@expo/vector-icons'; 
 import {Button, Card ,TextInput} from 'react-native-paper'
-
 
 const AddData = ({navigation}) => {
     const [selectedValue, setSelectedValue] = useState();
@@ -18,8 +16,6 @@ const AddData = ({navigation}) => {
             Alert.alert("Select Target Muscle Group To Fetch data")
             return
         }
-
-        
         fetch("https://nsgymbackend.herokuapp.com/admin/submitData",{
             method : "POST",
             headers : {
@@ -38,7 +34,6 @@ const AddData = ({navigation}) => {
         }).catch(err => {
             console.log(err)
         })
-        
         navigation.navigate('AddData')
     }
 
@@ -59,7 +54,7 @@ const AddData = ({navigation}) => {
                                             setSelectedValue(itemValue)  
                                     }>
                                         <Picker.Item label="Select" value={null}/>
-                                        <Picker.Item label="Chest" value="chest" />
+                                        <Picker.Item label="Chest" value="Chest" />
                                         <Picker.Item label="Back" value="back" />
                                         <Picker.Item label="Shoulder" value="shoulder" />
                                         <Picker.Item label="Biceps" value="biceps" />
@@ -67,11 +62,11 @@ const AddData = ({navigation}) => {
                                         <Picker.Item label="Legs" value="legs" />
                                     </Picker>
                                 </View>
-                                <TextInput label="Name" mode="outlined"  onChangeText={(text) => {setName(text)}}/>
-                                <TextInput label="ImageUrl" mode="outlined"  onChangeText={(text) => {setImageUrl(text)}}/>
-                                <TextInput label="Set" mode="outlined"  onChangeText={(text) => {setSet(text)}}/>
-                                <TextInput label="VideoId" mode="outlined"  onChangeText={(text) => {setVideoId(text)}}/>
-                                <TextInput label="Description" mode="outlined"  onChangeText={(text) => {setDesc(text)}}/>
+                                <TextInput placeholder="Name" label="Name" mode="outlined"  onChangeText={(text) => {setName(text)}}/>
+                                <TextInput placeholder="ImageUrl" label="ImageUrl" mode="outlined"  onChangeText={(text) => {setImageUrl(text)}}/>
+                                <TextInput placeholder="Set" label="Set" mode="outlined"  onChangeText={(text) => {setSet(text)}}/>
+                                <TextInput placeholder="VideoID" label="VideoId" mode="outlined"  onChangeText={(text) => {setVideoId(text)}}/>
+                                <TextInput placeholder="Description" label="Description" mode="outlined"  onChangeText={(text) => {setDesc(text)}}/>
                                 <Button mode="contained" color='orange' style={{margin:20,borderRadius:7}} onPress={() => submitData()}>Sumbit</Button>
                             </Card.Content>
                         </Card>

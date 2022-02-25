@@ -1,11 +1,9 @@
-import React,{useCallback,useState} from 'react'
-import {ScrollView, View, Text ,Image,Alert } from 'react-native'
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import React from 'react'
+import {ScrollView, View} from 'react-native'
+import {Card,Paragraph } from 'react-native-paper';
 import YoutubePlayer from "react-native-youtube-iframe";
 
 const Exercise = ({data}) => {
-   
-
     return (
         <ScrollView >
                 {

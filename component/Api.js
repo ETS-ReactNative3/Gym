@@ -1,13 +1,19 @@
-import React ,{useState} from 'react'
-import { View,ScrollView,Text,StyleSheet, Alert} from 'react-native'
+import React ,{useState,useCallback} from 'react'
+import { View,ScrollView,Text,StyleSheet, Alert,RefreshControl} from 'react-native'
 import {Button} from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker'
 import Exercise from './Exercise';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve,timeout))
+}
 
 const Api = () => {
     const [selectedValue, setSelectedValue] = useState();
     const [eData,setData] = useState([])
-    
+
+    const [refreshing, setRefreshing] = useState(false)
+
     const fetchData = () => {
         if(selectedValue == null){
             Alert.alert("Select Target Muscle Group To Fetch data")
@@ -30,8 +36,18 @@ const Api = () => {
         })
     }
 
+    const onRefresh = useCallback(() => {
+        setRefreshing(true)
+        setSelectedValue(selectedValue)
+        fetchData()
+        wait(3000).then(() => {
+            setRefreshing(false)
+        })
+    },[])
+
     return (
-        <ScrollView>
+        <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
+            <Text style={{textAlign:'right'}}> <Icon name="database-refresh" size={30} color='white' onPress={onRefresh} /> </Text>
             <View style={styles.main}>
                 <Picker
                     selectedValue={selectedValue}
@@ -51,7 +67,6 @@ const Api = () => {
                 </Picker>
                     <Button mode="contained" color='orange' style={{margin:20,borderRadius:7}}  onPress={() => fetchData()}> Get</Button>
             </View>
-
             <Exercise data={eData} />
         </ScrollView>
     )

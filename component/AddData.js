@@ -1,7 +1,8 @@
-import React ,{useState}from 'react'
+import React ,{useState,useCallback}from 'react'
 import {Text,ImageBackground,StyleSheet, Dimensions, View, ScrollView,KeyboardAvoidingView,Alert} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {Button, Card ,TextInput} from 'react-native-paper'
+
 
 const AddData = ({navigation}) => {
     const [selectedValue, setSelectedValue] = useState();
@@ -11,6 +12,7 @@ const AddData = ({navigation}) => {
     const [videoId, setVideoId] = useState('')
     const [desc,setDesc] = useState('')
 
+    
     const submitData = () => {
         if(selectedValue == null){
             Alert.alert("Select Target Muscle Group To Fetch data")
@@ -34,19 +36,20 @@ const AddData = ({navigation}) => {
         }).catch(err => {
             console.log(err)
         })
-        navigation.navigate('AddData')
+        //Add loading Spinner 
+        navigation.replace('AddData')
     }
 
     return (
         <KeyboardAvoidingView>
-            <ScrollView>
+            <ScrollView >
                 <ImageBackground style={styles.img} source={require('../assets/b1.jpg')}>
                     <View style={{padding:10,paddingTop:30}}>
-                        <Text style={{textAlign:'center',fontSize:30,paddingBottom:30,fontWeight:'bold'}}>Add Data </Text>
+                    
                         <Card>
                             <Card.Content>
                                 <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-                                    <Text>Choose Target Muscle Group</Text>
+                                    <Text>Select Category</Text>
                                     <Picker
                                         selectedValue={selectedValue}
                                         style={{ height: 50, width: 150 }}

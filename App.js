@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack'
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import Homepage from './screens/Homepage';
 import AdminLogin from './screens/AdminLogin';

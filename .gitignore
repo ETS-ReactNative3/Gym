@@ -1,5 +1,4 @@
-weekDay.json
-ExercisesList.json
+extra screens
 .expo/
 dist/
 npm-debug.*
@@ -10,7 +9,6 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-gym.txt
 # macOS
 .DS_Store
 node_modules

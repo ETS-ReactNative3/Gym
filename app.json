@@ -1,16 +1,15 @@
 {
   "expo": {
-    "name": "Gym_App",
-    "slug": "Gym_App",
+    "name": "BeFit07",
+    "slug": "BeFit07",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#050000"
     },
-    
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -22,9 +21,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ns07studios.beFit07",
+      "permissions":["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"]
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -23,7 +23,6 @@ const Admin = ({navigation}) => {
         })
         .then(res => res.json())
         .then(data =>{
-            
             if(!data.token) {
                 Alert.alert(
                     "Invalid Credentials",
@@ -46,7 +45,6 @@ const Admin = ({navigation}) => {
         <View>
             <ImageBackground source={require('../assets/b2.jpg') } style={styles.img}>
                 <View>
-                    {/* <Button mode="contained" color="yellow" onPress={() => {navigation.navigate('AdminSignup')}}> signUp </Button> */}
                     <Text style={{color:'white',textAlign:'center',padding:20,fontSize:20}}>Welcome</Text>
                     <Text style={{color:'white',textAlign:'center',padding:10,fontSize:20}}>Login to Continue</Text>
                     <View style={styles.line}/>

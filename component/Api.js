@@ -1,9 +1,9 @@
 import React ,{useState,useCallback} from 'react'
-import { View,ScrollView,Text,StyleSheet, Alert,RefreshControl} from 'react-native'
+import { View,ScrollView,StyleSheet, Alert,RefreshControl} from 'react-native'
 import {Button} from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker'
 import Exercise from './Exercise';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
 const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve,timeout))
 }
@@ -11,15 +11,13 @@ const wait = (timeout) => {
 const Api = () => {
     const [selectedValue, setSelectedValue] = useState();
     const [eData,setData] = useState([])
-
     const [refreshing, setRefreshing] = useState(false)
-
+    
     const fetchData = () => {
         if(selectedValue == null){
             Alert.alert("Select Target Muscle Group To Fetch data")
             return
         }
-
         fetch("https://nsgymbackend.herokuapp.com/user",{
             method : "POST",
             headers: {
@@ -47,7 +45,6 @@ const Api = () => {
 
     return (
         <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
-            <Text style={{textAlign:'right'}}> <Icon name="database-refresh" size={30} color='white' onPress={onRefresh} /> </Text>
             <View style={styles.main}>
                 <Picker
                     selectedValue={selectedValue}

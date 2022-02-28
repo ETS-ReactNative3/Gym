@@ -1,13 +1,11 @@
 import React,{useState} from 'react'
-import { View,StyleSheet ,ImageBackground,ScrollView,ActivityIndicator} from 'react-native'
+import { View,StyleSheet ,ImageBackground,ScrollView} from 'react-native'
 import {Button} from 'react-native-paper'
 import Api from '../component/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Homepage = ({navigation}) => {
     const [adminToken,setAdminToken] = useState(false)
-    const [userloginToken,setUserLoginToken] = useState(false)
-
     const adminLogin = async () => {
         let keys = []
         try {
@@ -29,33 +27,12 @@ const Homepage = ({navigation}) => {
         }
     }
 
-    const userLogin = async () => {
-        let keys = []
-        try {
-            keys = await AsyncStorage.getAllKeys()
-        } catch(e) {}
-
-        keys.forEach(el => {
-            if(el == 'USER_LOGIN_TOKEN'){
-                setUserLoginToken(true)
-            }
-        })
-
-        if(userloginToken == false){
-            navigation.navigate('UserLogin')
-        }
-        if(userloginToken == true){
-            navigation.navigate('UserHome')
-        }
-    }
-
     return (
         <ScrollView>
             <View>
             <ImageBackground source={require('../assets/b3.jpg')} style={styles.img}>
                 <View style={{flexDirection:'row',justifyContent:'center'}}>
-                    <Button style={styles.textInput} mode="contained" color="yellow" onPress={() =>adminLogin()}>Admin</Button>                
-                    {/* <Button style={styles.textInput} mode="contained" color="yellow" onPress={() => userLogin()}>User</Button>     */}
+                    <Button style={styles.textInput} mode="contained" color="yellow" onPress={() =>adminLogin()}>Admin</Button>
                 </View>
                 <View style={styles.line}/>
                 <Api />

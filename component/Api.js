@@ -3,16 +3,20 @@ import { View,ScrollView,StyleSheet, Alert,Text} from 'react-native'
 import {Button} from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker'
 import Exercise from './Exercise';
+import { ActivityIndicator } from 'react-native-paper';
+
 
 const Api = () => {
     const [selectedValue, setSelectedValue] = useState();
     const [eData,setData] = useState([])
+    const [isLoading,setIsLoading] = useState(false)
 
     const fetchData = () => {
         if(selectedValue == null){
             Alert.alert("Select Target Muscle Group To Fetch data")
             return
         }
+        setIsLoading(true)
         fetch("https://nsgymbackend.herokuapp.com/user",{
             method : "POST",
             headers: {
@@ -24,11 +28,12 @@ const Api = () => {
         }).then((res) => res.json()).
         then(data => {
             setData(data.result)  
+            setIsLoading(false)
         }).catch(err => {
             console.log(err)
         })
-        
     }
+
     return (
         <ScrollView>
             <View style={styles.main}>
@@ -49,6 +54,7 @@ const Api = () => {
                     <Picker.Item label="Legs" value="legs"/>
                 </Picker>
                     <Button mode="contained" color='orange' style={{margin:20,borderRadius:7}}  onPress={() => fetchData()}> Get</Button>
+                    <Text>{isLoading ? <ActivityIndicator size="large" color="#FFA500"/> : null}</Text>
             </View>
             <Exercise data={eData} />
         </ScrollView>

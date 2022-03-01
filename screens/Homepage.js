@@ -4,7 +4,6 @@ import {Button} from 'react-native-paper'
 import Api from '../component/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 const Homepage = ({navigation}) => {
     const [adminToken,setAdminToken] = useState(false)
     const adminLogin = async () => {
@@ -25,10 +24,6 @@ const Homepage = ({navigation}) => {
             navigation.navigate('AdminHome')
         }
     }
-
-   
-    
-  
     return (
         <ScrollView>
             <View>

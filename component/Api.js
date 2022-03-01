@@ -1,18 +1,13 @@
-import React ,{useState,useCallback} from 'react'
-import { View,ScrollView,StyleSheet, Alert,RefreshControl} from 'react-native'
+import React ,{useState} from 'react'
+import { View,ScrollView,StyleSheet, Alert,Text} from 'react-native'
 import {Button} from 'react-native-paper'
 import {Picker} from '@react-native-picker/picker'
 import Exercise from './Exercise';
 
-const wait = (timeout) => {
-    return new Promise(resolve => setTimeout(resolve,timeout))
-}
-
 const Api = () => {
     const [selectedValue, setSelectedValue] = useState();
     const [eData,setData] = useState([])
-    const [refreshing, setRefreshing] = useState(false)
-    
+
     const fetchData = () => {
         if(selectedValue == null){
             Alert.alert("Select Target Muscle Group To Fetch data")
@@ -28,23 +23,14 @@ const Api = () => {
             })
         }).then((res) => res.json()).
         then(data => {
-            setData(data.result)
+            setData(data.result)  
         }).catch(err => {
             console.log(err)
         })
+        
     }
-
-    const onRefresh = useCallback(() => {
-        setRefreshing(true)
-        setSelectedValue(selectedValue)
-        fetchData()
-        wait(3000).then(() => {
-            setRefreshing(false)
-        })
-    },[])
-
     return (
-        <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
+        <ScrollView>
             <View style={styles.main}>
                 <Picker
                     selectedValue={selectedValue}

@@ -11,7 +11,6 @@ const defaultNavOptions = {
   headerTintColor: '#fff',
   headerTitleStyle: {fontWeight: 'bold'}
 }
-
 const Stack = createNativeStackNavigator();
 export default function App() {
   

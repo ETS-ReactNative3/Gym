@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
-import { View,StyleSheet ,ImageBackground,ScrollView} from 'react-native'
+import React,{useState,useEffect} from 'react'
+import {View,StyleSheet ,ImageBackground,ScrollView,Text} from 'react-native'
 import {Button} from 'react-native-paper'
 import Api from '../component/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Homepage = ({navigation}) => {
     const [adminToken,setAdminToken] = useState(false)
@@ -12,13 +13,11 @@ const Homepage = ({navigation}) => {
             keys = await AsyncStorage.getAllKeys()
         } catch(e) {
         }
-
         keys.forEach(el => {
             if(el == 'ADMIN_LOGIN_TOKEN'){
                 setAdminToken(true)
             }
         })
-
         if(adminToken == false){
             navigation.navigate('AdminLogin')
         }
@@ -27,6 +26,9 @@ const Homepage = ({navigation}) => {
         }
     }
 
+   
+    
+  
     return (
         <ScrollView>
             <View>
@@ -72,5 +74,5 @@ const styles = StyleSheet.create({
         marginRight:60,
         marginTop:4,
         paddingBottom : 20
-    }
+    },
 })
